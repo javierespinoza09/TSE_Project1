@@ -14,7 +14,7 @@ main_loop = GLib.MainLoop()
 main_loop_thread = Thread(target=main_loop.run)
 main_loop_thread.start()
 
-pipeline = Gst.parse_launch("pulsesrc ! audioconvert ! audioresample ! audioecho ! audioconvert ! autoaudiosink v4l2src ! decodebin ! videoconvert ! edgetv ! videoconvert ! autovideosink")
+pipeline = Gst.parse_launch("v4l2src ! decodebin ! videoconvert ! facedetect ! videoconvert ! ximagesink")
 
 pipeline.set_state(Gst.State.PLAYING)
 
