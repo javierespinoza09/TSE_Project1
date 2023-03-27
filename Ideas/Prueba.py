@@ -14,7 +14,7 @@ main_loop = GLib.MainLoop()
 main_loop_thread = Thread(target=main_loop.run)
 main_loop_thread.start()
 
-pipeline = Gst.parse_launch("filesrc location=videotest.webm ! decodebin ! videoconvert ! facedetect ! videoconvert ! ximagesink")
+pipeline = Gst.parse_launch("videotestsrc ! decodebin ! videoconvert ! ximagesink")
 
 pipeline.set_state(Gst.State.PLAYING)
 
