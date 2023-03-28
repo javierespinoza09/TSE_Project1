@@ -14,7 +14,12 @@ main_loop = GLib.MainLoop()
 main_loop_thread = Thread(target=main_loop.run)
 main_loop_thread.start()
 
-pipeline = Gst.parse_launch("filesrc location=videotest.webm ! decodebin ! videoconvert ! facedetect ! videoconvert ! ximagesink")
+sel=int(input("¿Desea usar cámara (1) o video pregrabado (2)?\n"))
+
+if sel==1:
+	pipeline = Gst.parse_launch("v4l2src ! decodebin ! videoconvert ! facedetect ! videoconvert ! ximagesink")
+else:
+	pipeline = Gst.parse_launch("filesrc location=videotest.webm ! decodebin ! videoconvert ! facedetect ! videoconvert ! ximagesink")
 
 pipeline.set_state(Gst.State.PLAYING)
 
